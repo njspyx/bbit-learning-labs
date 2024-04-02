@@ -19,13 +19,13 @@ class mqProducer(mqProducerInterface):
         # Establish Channel
         self.channel = self.connection.channel()
 
-        # Create the exchange if not already present
+        # Create the exchange if not already presents
         self.exchange = self.channel.exchange_declare(exchange=self.exchange_name)
     
     def publishOrder(self, message: str) -> None:
         # Basic Publish to Exchange
         self.channel.basic_publish(
-            exchange=self.exchange,
+            exchange=self.exchange_name,
             routing_key=self.routing_key,
             body=message,
         )
